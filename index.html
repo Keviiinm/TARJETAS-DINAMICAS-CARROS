@@ -21,48 +21,48 @@
                     <!-- Foto (URL) -->
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto (URL)</label>
-                        <input type="url" class="form-control"  placeholder="https://ejemplo.com/auto.jpg"
+                        <input type="url" id="foto" class="form-control"  placeholder="https://ejemplo.com/auto.jpg"
                             required>
                     </div>
 
                     <!-- Nombre -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control"  placeholder="Ej: Corolla" required>
+                        <input type="text" id="nombre" class="form-control"  placeholder="Ej: Corolla" required>
                     </div>
 
                     <!-- Marca -->
                     <div class="mb-3">
                         <label for="marca" class="form-label">Marca</label>
-                        <input type="text" class="form-control"  placeholder="Ej: Toyota" required>
+                        <input type="text" id="marca" class="form-control"  placeholder="Ej: Toyota" required>
                     </div>
 
                     <!-- Modelo -->
                     <div class="mb-3">
                         <label for="modelo" class="form-label">Modelo</label>
-                        <input type="text" class="form-control"  placeholder="Ej: 2021" required>
+                        <input type="text" id="modelo" class="form-control"  placeholder="Ej: 2021" required>
                     </div>
 
                     <!-- Kilometraje -->
                     <div class="mb-3">
                         <label for="kilometraje" class="form-label">Kilometraje</label>
-                        <input type="number" class="form-control"  placeholder="Ej: 35000" required>
+                        <input type="number" id="kilometraje" class="form-control"  placeholder="Ej: 35000" required>
                     </div>
 
                     <!-- Precio -->
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio ($)</label>
-                        <input type="number" class="form-control"  placeholder="Ej: 50000000" required>
+                        <input id="precio" type="number" class="form-control"  placeholder="Ej: 50000000" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Agregar Vehículo</button>
+                    <button type="submit" id="agregar" class="btn btn-primary">Agregar Vehículo</button>
                 </form>
             </div>
 
             <!-- Columna derecha: Contenedor de tarjetas -->
             <div class="col-md-6" id="cont-cards">
                 <h2 class="mb-3">Vehículos Registrados</h2>
-                <div class="row g-3" id="cont-cardss">
+                <div class="row g-3" id="cont-cards2">
                     <!-- Ejemplo de tarjeta -->
                     <div class="col-md-6 item-vehiculo">
                         <div class="card h-100">
