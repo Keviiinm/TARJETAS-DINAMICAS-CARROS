@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+#carrito-btn{
+    width: 50px;
+    position: relative;
+    top: -600px;
+    left: 1150px;
+}
+#carrito-panel {
+  position: fixed;
+  top: 0;
+  right: -400px; 
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+  transition: right 0.3s ease-in-out;
+  z-index: 1050; 
+  overflow-y: auto;
+}
+
+#carrito-panel.abierto {
+  right: 0; /* entra desde la derecha */
+}
+

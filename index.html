@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -74,7 +75,7 @@
                                 <h4 class="card-text">Kilometraje: 35,000 km</h4>
                                 <h2 class="text-success">$50,000,000</h2>
                                 <div class="d-flex justify-content-between mt-3">
-                                    <button class="btn btn-success">Comprar</button>
+                                    <button class="btn btn-success btn-comprar">Comprar</button>
                                     <button class="btn btn-danger">Eliminar</button>
                                 </div>
                             </div>
@@ -83,14 +84,52 @@
                     <!-- Aquí se irán agregando las demás tarjetas dinámicamente con JS -->
                 </div>
             </div>
+
+
+            <!-- Botón del carrito -->
+            <button id="carrito-btn" class="btn btn-dark bottom-0 end-0 m-4">
+                <i class="bi bi-cart4 fs-4"></i>
+                <span id="contador" class="badge bg-danger">0</span>
+            </button>
         </div>
-    </section>
+
+        <!-- Panel lateral del carrito -->
+        <div id="carrito-panel" class="carrito-cerrado">
+            <div class="carrito-header d-flex justify-content-between align-items-center p-3 border-bottom">
+                <h4>🛒 Mi Carrito</h4>
+                <button id="cerrar-carrito" class="btn btn-sm btn-outline-danger">✖</button>
+            </div>
+
+            <div id="carrito-lista" class="p-3">
+                <!-- Ejemplo de item -->
+                <div class="carrito-item d-flex align-items-center mb-3">
+                    <img
+                        src="https://www.buyatoyota.com/sharpr/bat/assets/img/vehicle-info/Corolla/2026/hero-image.png"
+                        alt="Corolla" width="70" class="me-2 rounded">
+                    <div class="detalles flex-grow-1">
+                        <h5 class="mb-0">Corolla</h5>
+                        <small>Marca: Toyota</small><br>
+                        <small>Modelo: 2021</small><br>
+                        <span class="text-success">$50,000,000</span>
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger btn-eliminar">❌</button>
+                </div>
+            </div>
+        </div>
+  </section>
+            
+            
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
-        <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

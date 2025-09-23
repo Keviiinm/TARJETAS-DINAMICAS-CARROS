@@ -15,7 +15,7 @@ function createVehicle(foto, nombre, marca, modelo, kilometraje, precio){
     
     // *creamos el nodo o elemento padre
     const padre = document.createElement("div");
-    padre.classList.add("cont-cards")
+    padre.classList.add("cont-cards");
 
 
     const col = document.createElement("div");
@@ -121,4 +121,93 @@ const form  = document.getElementById("vehiculo-form");
     }
     // resetear formulario
     form.reset();
+
+    
+    
+
+
+    // !==================== PANEL CARRITO ====================
+    const btnCarro = document.getElementById("carrito-btn");
+    const carritoPanel = document.getElementById("carrito-panel");
+    const cerrarCarrito = document.getElementById("cerrar-carrito");
+
+    btnCarro.addEventListener("click", () => {
+    carritoPanel.classList.add("abierto");
+    });
+    cerrarCarrito.addEventListener("click", () => {
+    carritoPanel.classList.remove("abierto");
+    });
+
+    // ==================== LÓGICA DEL CARRITO ====================
+    const contenedorVehiculos = document.getElementById("cont-cards2");
+    const carritoLista = document.getElementById("carrito-lista");
+    const contador = document.getElementById("contador");
+
+    // Contenedor para total
+    const totalDiv = document.createElement("div");
+    totalDiv.classList.add("p-3", "border-top", "fw-bold");
+    carritoLista.insertAdjacentElement("afterend", totalDiv);
+
+    let carrito = [];
+
+    // Renderizar carrito
+    function renderizarCarrito() {
+    carritoLista.innerHTML = "";
+    let total = 0;
+
+    carrito.forEach((item, index) => {
+        total += item.precio;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("carrito-item", "d-flex", "align-items-center", "mb-3");
+
+        itemDiv.innerHTML = `
+        <img src="${item.foto}" alt="${item.nombre}" width="70" class="me-2 rounded">
+        <div class="detalles flex-grow-1">
+            <h5 class="mb-0">${item.nombre}</h5>
+            <small>Marca: ${item.marca}</small><br>
+            <small>Modelo: ${item.modelo}</small><br>
+            <span class="text-success">$${item.precio.toLocaleString()}</span>
+        </div>
+        <button class="btn btn-sm btn-outline-danger btn-eliminar">❌</button>
+        `;
+
+        // Eliminar producto del carrito
+        itemDiv.querySelector(".btn-eliminar").addEventListener("click", () => {
+        carrito.splice(index, 1);
+        actualizarContador();
+        renderizarCarrito();
+        });
+
+        carritoLista.appendChild(itemDiv);
+    });
+
+    totalDiv.textContent = "total: " + total.toLocaleString();
+    }
+
+    // Actualizar contador
+    function actualizarContador() {
+    contador.textContent = carrito.length;
+    }
+
+    // Delegación de eventos para botón "Comprar"
+    contenedorVehiculos.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-comprar")) {
+        const card = e.target.closest(".card");
+        const foto = card.querySelector("img").src;
+        const nombre = card.querySelector(".card-title").textContent;
+        const marca = card.querySelector(".card-subtitle").textContent;
+        const modelo = card.querySelectorAll(".card-text")[0].textContent.split(": ")[1];
+        const precioTexto = card.querySelector(".text-success").textContent.replace(/[^\d]/g, "");
+        const precio = parseInt(precioTexto);
+
+        const vehiculo = { foto, nombre, marca, modelo, precio };
+
+        carrito.push(vehiculo);
+        actualizarContador();
+        renderizarCarrito();
+    }
+    });
+    
+
 });
