@@ -5,26 +5,95 @@
     font-family: "Montserrat", sans-serif;
 }
 
-#carrito-btn{
+#carrito-panel{
     width: 50px;
-    position: relative;
-    top: -600px;
-    left: 1150px;
+    margin-top: 20px;
+    margin-right: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
 }
-#carrito-panel {
-  position: fixed;
-  top: 0;
-  right: -400px; 
-  width: 350px;
-  height: 100%;
-  background: #fff;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
-  transition: right 0.3s ease-in-out;
-  z-index: 1050; 
-  overflow-y: auto;
+.carrito-cerrado {
+    position: fixed;
+    right: -400px; /* Cerrado por defecto */
+    transition: right 0.3s ease;
 }
 
-#carrito-panel.abierto {
-  right: 0; /* entra desde la derecha */
+.carrito-cerrado.abierto {
+    right: 0; /* Abierto cuando tiene la clase 'abierto' */
 }
 
+.panel {
+    position: fixed;
+    background: rgba(197, 218, 12, 0.596);
+    width: 250px;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.panel.activo{
+    right: 250px;
+}
+
+.panel.show {
+    transform: translateX(0);
+}
+
+.panel .tarjeta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.panel .tarjeta .cont-img img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.panel .tarjeta .cont-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 2px;
+}
+
+.panel .tarjeta .cont-info h3 {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.panel .tarjeta .cont-info h3:nth-child(3) {
+    font-weight: bold;
+    color: #198754;
+}
+
+.panel .tarjeta .cont-info .btn-original {
+    align-self: flex-end;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 2px 6px;
+    cursor: pointer;
+}
+.panel .tarjeta .cont-info button:hover {
+    background: #a71d2a;
+}
