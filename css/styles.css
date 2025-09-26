@@ -1,32 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
-
-*{
-    font-family: "Montserrat", sans-serif;
-}
-
-#carrito-panel{
+#carrito{
     width: 50px;
-    margin-top: 20px;
-    margin-right: 20px;
-    position: fixed;
-    top: 0;
-    right: 0;
+    height: 30px;
+    position: absolute;
+    right: 1%;
+    top: 10px;
     z-index: 2;
-}
-.carrito-cerrado {
-    position: fixed;
-    right: -400px; /* Cerrado por defecto */
-    transition: right 0.3s ease;
-}
-
-.carrito-cerrado.abierto {
-    right: 0; /* Abierto cuando tiene la clase 'abierto' */
 }
 
 .panel {
     position: fixed;
-    background: rgba(197, 218, 12, 0.596);
+    background: rgba(235, 231, 7, 0.781);
     width: 250px;
     height: 100vh;
     top: 0;
@@ -43,6 +28,7 @@
 
 .panel.activo{
     right: 250px;
+    margin: auto;
 }
 
 .panel.show {
@@ -95,5 +81,11 @@
     cursor: pointer;
 }
 .panel .tarjeta .cont-info button:hover {
-    background: #a71d2a;
+    background: #ffffff;
 }
+
+
+
+
+
+
