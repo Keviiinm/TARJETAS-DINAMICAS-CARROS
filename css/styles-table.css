@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+
+/* === Estilos generales === */
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* === Título === */
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+/* === Tabla === */
+#tabla-compras {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* === Encabezados === */
+#tabla-compras thead {
+    background: #fcfbb3;
+}
+
+#tabla-compras thead td {
+    font-weight: bold;
+    padding: 1rem;
+    color: #333;
+}
+
+/* === Filas === */
+#tabla-compras tbody td {
+    padding: 0.9rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+
+
+
+button {
+    border: none;
+    border-radius: 15px;
+    color: #ffffff;
+    background: #e92424;
+    padding: 15px;
+    cursor: pointer;
+}
+button:hover{
+    transform: translateY(-2px);
+    transition: .5s;    
+    background: #b60000;
+}

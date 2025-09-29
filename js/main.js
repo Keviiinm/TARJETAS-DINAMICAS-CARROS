@@ -134,6 +134,8 @@ function eventsToVehicles(padre) {
         const fotoPanel = padre.querySelector('img').getAttribute('src');
         const nombrePanel = padre.querySelector('.card-title').textContent;
         const marcaPanel = padre.querySelector('.card-subtitle').textContent;
+        const modeloPanel = padre.querySelectorAll('.card-text')[0].textContent;
+        const kmPanel = padre.querySelectorAll('.card-text')[1].textContent;
         const precioPanel = padre.querySelector('.text-success').textContent;
 
         const precioNum = parseInt(precioPanel.replace(/\D/g, ""));
@@ -145,12 +147,39 @@ function eventsToVehicles(padre) {
         totalCarrito += precioNum;
         cantidadCarrito++;
         actualizarTotal();
+
+        // GUARDAMOS LOCAL STORAGE
+        guardarCompra({
+        nombre: nombrePanel,
+        marca: marcaPanel,
+        modelo: modeloPanel,
+        kilometraje: kmPanel,
+        precio: precioPanel,
+        foto: fotoPanel
+    });
+
+
+
     });
 
     // evento de eliminar de la de vehiculos
     botonEliminar.addEventListener('click', () => {
         padre.remove();
     });
+
+
+    // Guardar compra en localStorage
+    function guardarCompra(vehiculo) {
+        // Recuperar compras previas o array vacío
+        let compras = JSON.parse(localStorage.getItem("compras")) || [];
+
+        // Agregar nueva compra
+        compras.push(vehiculo);
+
+        // Guardar actualizado
+        localStorage.setItem("compras", JSON.stringify(compras));
+    }
+
 }
 
 
@@ -191,7 +220,7 @@ function itemPanel(foto, nombre, marca, precio, precioNum) {
 
     btnEliminar.addEventListener('click', () => {
         divPadrePanel.remove();
-        totalCarrito-= precioNum;
+        totalCarrito -= precioNum;
         cantidadCarrito--;
         actualizarTotal();
 
