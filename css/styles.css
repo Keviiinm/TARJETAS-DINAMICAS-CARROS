@@ -5,84 +5,120 @@
     height: 30px;
     position: absolute;
     right: 1%;
-    top: 10px;
-    z-index: 2;
+    color: black;
+    border: none;
+    border-radius: 5px;    
+    top: 20px;
+    z-index: 22;
+    position: fixed;
+    
 }
 
+#carrito:hover{
+    transform: translateX(-3px);
+    transition: 0.3s;
+}
+
+/* Panel lateral del carrito */
 .panel {
     position: fixed;
-    background: rgba(235, 231, 7, 0.781);
-    width: 250px;
-    height: 100vh;
     top: 0;
-    right: 0;
-    padding: 10px;
-    border-radius: 8px 0 0 8px;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    right: -350px; 
+    width: 350px;
+    height: 100%;
+    background-color: #fff;
+    color: #333;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    padding: 20px;
     overflow-y: auto;
-    overflow-x: hidden;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
+    border-left: 1px solid #ddd;
     z-index: 1;
 }
 
-.panel.activo{
-    right: 250px;
-    margin: auto;
+/* Panel activo (cuando se despliega) */
+.panel.activo {
+    right: 0;
 }
 
-.panel.show {
-    transform: translateX(0);
+/* Título y total */
+.panel h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
+.panel #total-panel {
+    margin-bottom: 20px;
+    font-size: 1.2rem;    
+    color: #111;
+}
+
+/* Contenedor de productos */
+.panel .cont-products {
+    display: flex;    
+    gap: 15px;
+}
+
+/* Cada tarjeta dentro del carrito */
 .panel .tarjeta {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
+    background-color: #f3f5ff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05); 
+}
+
+.panel .tarjeta:hover {
+    transform: translateY(-2px);
+    transition: 0.3s;
+}
+
+/* Imagen del producto */
+.panel .cont-img img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
     border-radius: 8px;
-    padding: 8px;
-    margin-bottom: 10px;
 }
 
-.panel .tarjeta .cont-img img {
-    width: 80px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 4px;
-}
-
-.panel .tarjeta .cont-info {
+/* Información del producto */
+.panel .cont-info {
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    gap: 2px;
+    justify-content: space-between;
 }
 
-.panel .tarjeta .cont-info h3 {
-    font-size: 14px;
+.panel .cont-info h3 {
     margin: 0;
-    line-height: 1.2;
+    font-size: 0.95rem;
 }
 
-.panel .tarjeta .cont-info h3:nth-child(3) {
-    font-weight: bold;
-    color: #198754;
+.panel .cont-info h3:nth-child(3) {
+    color: #28a745; 
+    font-weight: 600;
 }
 
-.panel .tarjeta .cont-info .btn-original {
-    align-self: flex-end;
-    background: #dc3545;
-    color: white;
+/* Botón eliminar */
+.panel .btn-original {
+    background-color: #fd3e41;
+    color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 12px;
     padding: 2px 6px;
+    border-radius: 3px;
     cursor: pointer;
+    font-size: 0.9rem;
+    align-self: flex-end;
+    margin-top: 5px;
 }
-.panel .tarjeta .cont-info button:hover {
-    background: #ffffff;
+
+.panel .btn-original:hover {
+    background-color: #e63946;
 }
+
+
+
 
 
 
