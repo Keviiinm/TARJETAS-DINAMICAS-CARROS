@@ -1,48 +1,47 @@
-Gestión de Vehículos y Carrito de Compras
-La aplicación permite:
+🎯 Uso de la Aplicación
+Agregar Vehículo: Completa el formulario y haz clic en "Agregar"
 
-Agregar vehículos a un catálogo mediante un formulario
+Ver Catálogo: Los vehículos aparecen como tarjetas en la página principal
 
-Visualizar los vehículos en tarjetas con información detallada
+Comprar: Haz clic en "Comprar" para agregar al carrito
 
-Gestionar un carrito de compras
+Ver Carrito: Haz clic en el icono del carrito para desplegar el panel lateral
 
-Persistir datos en el navegador usando LocalStorage
-- Agregar vehículos al carrito
+Eliminar: Usa "eliminar" en tarjetas o "X" en el carrito
 
-- Visualizar resumen de compras en panel lateral
+🔧 Tecnologías Utilizadas
+HTML5 - Estructura de la aplicación
 
-- Calcular total automáticamente
+CSS3 - Estilos y diseño responsive
 
-- Eliminar items del carrito
+JavaScript ES6+ - Lógica de la aplicación
 
-- Persistencia del carrito entre sesiones
+LocalStorage API - Persistencia de datos
 
-Almacenamiento
-- Guardar catálogo de vehículos en LocalStorage
+Bootstrap - Framework CSS (clases utilitarias)
 
-- Guardar items del carrito en LocalStorage
+🚀 Características Técnicas
+Manipulación dinámica del DOM
 
-- Carga automática al iniciar la aplicación
+Event delegation y listeners
 
-Eliminar vehículos tanto del catálogo como del carrito
-Tecnologías Utilizadas
-- HTML5
-- CSS3
-- JavaScript (ES6)
-- Bootstrap (para estilos y grid system)
+Validación de formularios
 
-Instalación y Uso
-Clona o descarga el proyecto.
+Persistencia de datos en el navegador
 
-Abre el archivo index.html en tu navegador.
+Manejo de arrays y objetos en JavaScript
 
-Para agregar un vehículo, llena el formulario y haz clic en "Agregar".
+Uso de template strings y arrow functions
 
-Los vehículos aparecerán en la sección de tarjetas.
+🔄 Flujo de Eventos
+submit del formulario → Crear vehículo
 
-Puedes agregar un vehículo al carrito haciendo clic en "Comprar" en la tarjeta del vehículo.
+click en "Comprar" → Agregar al carrito
 
-Para ver el carrito, haz clic en el icono del carrito en la parte superior.
+click en "eliminar" → Remover del catálogo
 
-En el carrito, puedes eliminar vehículos haciendo clic en la "X".
+click en "X" del carrito → Remover del carrito
+
+DOMContentLoaded → Cargar datos guardados
+
+Nota: Este proyecto demuestra habilidades avanzadas en manipulación del DOM y gestión de estado local en el navegador.
