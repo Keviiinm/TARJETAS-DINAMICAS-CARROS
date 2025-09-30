@@ -9,6 +9,8 @@ const addBtn = document.getElementById('agregar')
 const panelLateral = document.querySelector('.panel')
 
 
+
+
 // creamos la funcion que nos permite crear una nueva tarea a partir del formulario
 // toda etiqueta que vamos a crear es partir de la maqueta html preexistente
 
@@ -66,7 +68,7 @@ function createVehicle(foto, nombre, marca, modelo, kilometraje, precio) {
     botonEliminar.textContent = 'eliminar';
 
 
-    // ensamblamos dentro del nodo padre sus nodos hijos, es decir la estructura de la card
+    // *ensamblamos dentro del nodo padre sus nodos hijos, es decir la estructura de la card
 
     padre.appendChild(col)
     col.appendChild(imagen)
@@ -81,13 +83,13 @@ function createVehicle(foto, nombre, marca, modelo, kilometraje, precio) {
     divBotones.appendChild(botonEliminar)
 
 
-    // utilizamos el return para retornar o dar respuesta del elemento creado ya que lo usaremos en otra funcion
+    // *utilizamos el return para retornar o dar respuesta del elemento creado ya que lo usaremos en otra funcion
 
     return padre;
 }
 
 
-// detectamos el click o evento click sobre el boton agregar con un evento de escucha o listener para que a partir de este evento se agregue la tarea dentro del contenedor cont-cards
+// *detectamos el click o evento click sobre el boton agregar con un evento de escucha o listener para que a partir de este evento se agregue la tarea dentro del contenedor cont-cards
 
 const form = document.getElementById('vehiculo-form')
 
@@ -103,15 +105,34 @@ form.addEventListener('submit', (e) => {
     const precio = inputPrecio.value.trim();
 
     if (foto == "") {
-        foto = 'https://cdn-icons-png.freepik.com/512/6356/6356630.png'
+        foto = 'https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_34a076aa1776473abf93874054d3e523.webp'
     }
 
     if (foto == "" || nombre == "" || marca == "" || modelo == "" || kilometraje == "" || precio == "") {
         alert("no se puede crear un item vacio");
     } else {
         const newVehicle = createVehicle(foto, nombre, marca, modelo, kilometraje, precio);
+
         eventsToVehicles(newVehicle);
         cards.appendChild(newVehicle);
+
+        const newCar = {
+            nombre: nombre,
+            marca: marca,
+            modelo: modelo,
+            kilometraje: kilometraje,
+            precio: precio,
+            foto: foto
+        };
+
+        const vehiculosGuardados = JSON.parse(localStorage.getItem("carros")) || [];
+
+        vehiculosGuardados.push(newCar);
+
+        form.reset();
+
+
+
         inputFoto.value = "";
         inputNombre.value = "";
         inputMarca.value = "";
@@ -148,39 +169,47 @@ function eventsToVehicles(padre) {
         cantidadCarrito++;
         actualizarTotal();
 
-        // GUARDAMOS LOCAL STORAGE
-        guardarCompra({
-        nombre: nombrePanel,
-        marca: marcaPanel,
-        modelo: modeloPanel,
-        kilometraje: kmPanel,
-        precio: precioPanel,
-        foto: fotoPanel
+        // Crear objeto de compra
+        const compra = {
+            foto: fotoPanel,
+            nombre: nombrePanel,
+            marca: marcaPanel,
+            modelo: modeloPanel.replace('Modelo: ', ''),
+            kilometraje: kmPanel.replace('Km: ', ''),
+            precio: precioPanel,
+            precioNum: precioNum
+        };
+
+        // Agregar a compras
+        compras.push(compra);
+        // Guardar compras en localStorage
+        localStorage.setItem("compras", JSON.stringify(compras));
+
+
     });
 
-
-
-    });
-
-    // evento de eliminar de la de vehiculos
+    // *evento de eliminar de la de vehiculos
     botonEliminar.addEventListener('click', () => {
         padre.remove();
     });
 
 
-    // Guardar compra en localStorage
-    function guardarCompra(vehiculo) {
-        // Recuperar compras previas o array vacío
-        let compras = JSON.parse(localStorage.getItem("compras")) || [];
-
-        // Agregar nueva compra
-        compras.push(vehiculo);
-
-        // Guardar actualizado
-        localStorage.setItem("compras", JSON.stringify(compras));
-    }
-
 }
+
+function loadCompras() {
+    compras = JSON.parse(localStorage.getItem("compras")) || [];
+    compras.forEach(compra => {
+        const precioNum = parseInt(compra.precio.replace(/\D/g, ""));
+        const newPanel = itemPanel(compra.foto, compra.nombre, compra.marca, compra.precio, precioNum);
+        document.querySelector('.panel').appendChild(newPanel);
+        totalCarrito += precioNum;
+        cantidadCarrito++;
+    });
+    actualizarTotal();
+}
+
+// Llamar a loadCompras cuando la página se cargue
+document.addEventListener('DOMContentLoaded', loadCompras);
 
 
 const panel = document.querySelector('.panel');
@@ -224,6 +253,13 @@ function itemPanel(foto, nombre, marca, precio, precioNum) {
         cantidadCarrito--;
         actualizarTotal();
 
+
+        // Eliminar de compras en localStorage
+        compras = compras.filter(compra =>
+            !(compra.nombre === nombre && compra.marca === marca && compra.precio === precio)
+        );
+        localStorage.setItem("compras", JSON.stringify(compras));
+
     });
 
 
@@ -245,7 +281,15 @@ const totalPanel = document.getElementById("total-panel");
 let totalCarrito = 0;
 let cantidadCarrito = 0;
 
+// *INICIAMOS COMPRAS DESDE LOCAL STORAGE
+let compras = JSON.parse(localStorage.getItem("compras")) || [];
+
+
+
 // *Función para actualizar el h3
 function actualizarTotal() {
     totalPanel.textContent = `total (${cantidadCarrito}): $${totalCarrito.toLocaleString()}`;
 }
+
+
+
