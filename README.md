@@ -1,46 +1,31 @@
-Gestión de Vehículos - Proyecto DOM & LocalStorage
+*Proyecto Vehículos DOM + LocalStorage*
+
+Este repositorio contiene un proyecto web que permite gestionar un catálogo de vehículos mediante manipulación del DOM y almacenamiento en LocalStorage. La idea es simular una pequeña tienda donde se pueden agregar, mostrar, eliminar y comprar vehículos, manteniendo los datos aún después de recargar la página.
+
 *Descripción del Proyecto*
-Este proyecto es una aplicación web para gestionar un catálogo de vehículos con funcionalidades de carrito de compras, utilizando manipulación del DOM y almacenamiento local.
 
-*Funcionalidades Principales*
-*Gestión de Vehículos*
-Crear nuevos vehículos con: foto, nombre, marca, modelo, kilometraje y precio
-Validación de campos obligatorios
-Imagen por defecto si no se proporciona URL
-Eliminación de vehículos del catálogo
+El objetivo de este proyecto es practicar y aplicar los conceptos de manipulación del DOM en JavaScript y el uso de LocalStorage para la persistencia de datos. A través de un formulario se pueden agregar vehículos con información detallada (imagen, marca, modelo, kilometraje y precio). Estos vehículos se muestran como tarjetas dinámicas y también se pueden añadir a un carrito lateral que calcula el total de la compra.
 
-*Carrito de Compras*
--Agregar vehículos al carrito
--Visualizar resumen de compras en panel lateral
--Calcular total automáticamente
--Eliminar items del carrito
--Persistencia del carrito entre sesiones
+*Contenido del Repositorio*
+A continuación, se presenta una lista de las principales funcionalidades implementadas en este proyecto:
+Creación dinámica de tarjetas de vehículos
+Generación de elementos HTML a partir de los datos del formulario.
+Inclusión de imagen, nombre, marca, modelo, kilometraje y precio en cada tarjeta.
 
-*Almacenamiento*
--Guardar catálogo de vehículos en LocalStorage
--Guardar items del carrito en LocalStorage
--Carga automática al iniciar la aplicación
+*Gestión de LocalStorage*
+Guardado automático de los vehículos creados.
+Carga de vehículos y compras previas al iniciar la página.
+Carrito de compras (panel lateral)
+Agregar vehículos al carrito con su respectiva información.
+Cálculo automático del total y cantidad de vehículos.
+Eliminación de vehículos del carrito con actualización en LocalStorage.
+Interactividad con el usuario
+Validaciones de formulario (no permitir campos vacíos).
+Botones de "Comprar" y "Eliminar" en cada tarjeta.
+Panel lateral desplegable para visualizar las compras.
 
-*Tecnologías Utilizadas*
--HTML5 - Estructura de la aplicación
--CSS3 - Estilos y diseño responsive
--JavaScript ES6+ - Lógica de la aplicación
--LocalStorage API - Persistencia de datos
--Bootstrap - Framework CSS (clases utilitarias)
-
-*Características Técnicas*
--Manipulación dinámica del DOM
--Event delegation y listeners
--Validación de formularios
--Persistencia de datos en el navegador
--Manejo de arrays y objetos en JavaScript
--Uso de template strings y arrow function
-
-*Uso de la Aplicación*
--Agregar Vehículo: Completa el formulario y haz clic en "Agregar"
--Ver Catálogo: Los vehículos aparecen como tarjetas en la página principal
--Comprar: Haz clic en "Comprar" para agregar al carrito
--Ver Carrito: Haz clic en el icono del carrito para desplegar el panel lateral
--Eliminar: Usa "eliminar" en tarjetas o "X" en el carrito
-
-Nota: Este proyecto demuestra habilidades avanzadas en manipulación del DOM y gestión de estado local en el navegador.
+*Posibles mejoras futuras*
+Implementar buscador y filtros para los vehículos.
+Añadir categorías o tipos de vehículos.
+Optimizar el diseño responsivo del carrito.
+Usar IndexedDB como alternativa más avanzada a LocalStorage.
