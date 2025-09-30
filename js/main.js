@@ -111,11 +111,13 @@ form.addEventListener('submit', (e) => {
     if (foto == "" || nombre == "" || marca == "" || modelo == "" || kilometraje == "" || precio == "") {
         alert("no se puede crear un item vacio");
     } else {
+        // *CREAR LA CARD EN PANTALLA
         const newVehicle = createVehicle(foto, nombre, marca, modelo, kilometraje, precio);
 
         eventsToVehicles(newVehicle);
         cards.appendChild(newVehicle);
 
+        // *GUARDA EN LOCAL STORAGE
         const newCar = {
             nombre: nombre,
             marca: marca,
@@ -126,21 +128,22 @@ form.addEventListener('submit', (e) => {
         };
 
         const vehiculosGuardados = JSON.parse(localStorage.getItem("carros")) || [];
-
         vehiculosGuardados.push(newCar);
+        localStorage.setItem("carros", JSON.stringify(vehiculosGuardados));
 
         form.reset();
-
-
-
-        inputFoto.value = "";
-        inputNombre.value = "";
-        inputMarca.value = "";
-        inputModelo.value = "";
-        inputKilometraje.value = "";
-        inputPrecio.value = "";
     }
 });
+
+function loadVehicles() {
+    const vehiculosGuardados = JSON.parse(localStorage.getItem("carros")) || [];
+    vehiculosGuardados.forEach(v => {
+        const vehicleCard = createVehicle(v.foto, v.nombre, v.marca, v.modelo, v.kilometraje, v.precio);
+        eventsToVehicles(vehicleCard);
+        cards.appendChild(vehicleCard);
+    });
+}
+document.addEventListener("DOMContentLoaded", loadVehicles);
 
 
 function eventsToVehicles(padre) {
@@ -160,7 +163,6 @@ function eventsToVehicles(padre) {
         const precioPanel = padre.querySelector('.text-success').textContent;
 
         const precioNum = parseInt(precioPanel.replace(/\D/g, ""));
-
         const newPanel = itemPanel(fotoPanel, nombrePanel, marcaPanel, precioPanel, precioNum)
 
         document.querySelector('.panel').appendChild(newPanel);
@@ -169,7 +171,7 @@ function eventsToVehicles(padre) {
         cantidadCarrito++;
         actualizarTotal();
 
-        // Crear objeto de compra
+        // *Crear objeto de compra
         const compra = {
             foto: fotoPanel,
             nombre: nombrePanel,
@@ -180,9 +182,9 @@ function eventsToVehicles(padre) {
             precioNum: precioNum
         };
 
-        // Agregar a compras
+        // *Agregar a compras
         compras.push(compra);
-        // Guardar compras en localStorage
+        // *Guardar compras en localStorage
         localStorage.setItem("compras", JSON.stringify(compras));
 
 
@@ -190,12 +192,25 @@ function eventsToVehicles(padre) {
 
     // *evento de eliminar de la de vehiculos
     botonEliminar.addEventListener('click', () => {
+        const nombre = padre.querySelector('.card-title').textContent;
+        const marca = padre.querySelector('.card-subtitle').textContent;
+        const modelo = padre.querySelectorAll('.card-text')[0].textContent.replace('modelo: ', '');
         padre.remove();
+
+        let vehiculosGuardados = JSON.parse(localStorage.getItem("carros")) || [];
+        vehiculosGuardados = vehiculosGuardados.filter(v =>
+            !(v.nombre === nombre && v.marca === marca && v.modelo === modelo)
+        );
+        localStorage.setItem("carros", JSON.stringify(vehiculosGuardados));
     });
 
 
 }
 
+
+
+// !===========================================
+// *FUNCION DE CARGAR VEHICULOS DEL PANEL CARRITO AL RECARGAR LA PAGINA
 function loadCompras() {
     compras = JSON.parse(localStorage.getItem("compras")) || [];
     compras.forEach(compra => {
@@ -207,11 +222,10 @@ function loadCompras() {
     });
     actualizarTotal();
 }
-
-// Llamar a loadCompras cuando la página se cargue
+// *Llamar a loadCompras cuando la página se cargue
 document.addEventListener('DOMContentLoaded', loadCompras);
 
-
+// !===========================================
 const panel = document.querySelector('.panel');
 const carrito = document.getElementById('carrito');
 
